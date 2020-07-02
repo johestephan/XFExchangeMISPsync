@@ -23,5 +23,9 @@ headers = {"Authorization" : MISP['authkey'], "Content-Type": "application/xml",
 # getting individual case file IDs
 # will fetch all
 for report in data['casefiles']:
-    response = requests.get(XFE['endpoint']+"/casefiles/%s/stix" % report['caseFileID'], auth=HTTPBasicAuth(XFE['APIkey'], XFE['APIpassword']))
-    MISPpush = requests.post(MISP['endpoint']+'/events/upload_stix', headers=headers, data=response.text, verify=False)
+    try:
+        response = requests.get(XFE['endpoint']+"/casefiles/%s/stix" % report['caseFileID'], auth=HTTPBasicAuth(XFE['APIkey'], XFE['APIpassword']))
+        MISPpush = requests.post(MISP['endpoint']+'/events/upload_stix', headers=headers, data=response.text, verify=False)
+    except:
+        print("fetch and inject failed" )
+        continue
