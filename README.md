@@ -3,8 +3,7 @@ This script has been created to sync events and data from XForce Exchange (https
 and MISP (https://www.misp-project.org/). There are maybe simpler and better ways to do it, but this is at least
 (Yet Another...) way to do it.
 
-![Image of Yaktocat]
-(https://github.com/johestephan/XFExchangeMISPsync/doc/overview.png)
+![Basic Idea](https://github.com/johestephan/XFExchangeMISPsync/doc/overview.png)
 
 ### config.ini
 The configuration is done via a config file which will be parsed. In order to make this solution work you need to
