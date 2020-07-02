@@ -13,11 +13,14 @@ XFE = config_object['XFORCE']
 MISP = config_object['MISP']
 
 # Getting Public collections
-response = requests.get(XFE['endpoint']+"/casefiles/public", auth=HTTPBasicAuth(XFE['APIkey'], XFE['APIpassword']))
+response = requests.get(XFE['endpoint']+"/casefiles/"+XFE['type'], auth=HTTPBasicAuth(XFE['APIkey'], XFE['APIpassword']))
 data = response.json()
+print(data)
+
+headers = {"Authorization" : MISP['authkey'], "Content-Type": "application/xml", "Accept":"application/xml"}
+
 
 # getting individual case file IDs
-for report in data['casefiles']:
-    response = requests.get(XFE['endpoint']+"/casefiles/%s" % report['caseFileID'], auth=HTTPBasicAuth(XFE['APIkey'], XFE['APIpassword']))
-    collection = response.json()
-    print(report)
+for report in data['casefiles'][:3]:
+    response = requests.get(XFE['endpoint']+"/casefiles/%s/stix" % report['caseFileID'], auth=HTTPBasicAuth(XFE['APIkey'], XFE['APIpassword']))
+    MISPpush = requests.post(MISP['endpoint']+'/events/upload_stix', headers=headers, data=response.text, verify=False)
