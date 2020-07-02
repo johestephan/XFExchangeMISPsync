@@ -15,7 +15,7 @@ MISP = config_object['MISP']
 # Getting Public collections
 response = requests.get(XFE['endpoint']+"/casefiles/"+XFE['type'], auth=HTTPBasicAuth(XFE['APIkey'], XFE['APIpassword']))
 data = response.json()
-print(data)
+#print(data)
 
 headers = {"Authorization" : MISP['authkey'], "Content-Type": "application/xml", "Accept":"application/xml"}
 
