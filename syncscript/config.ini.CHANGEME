@@ -1,0 +1,9 @@
+[XFORCE]
+endpoint = https://api.xforce.ibmcloud.com/casefiles/public
+apikey = CHANGEME
+apipassword = CHANGEME
+
+[MISP]
+endpoint = CHANGEME
+authkey = CHANGEME
+
